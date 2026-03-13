@@ -10,5 +10,11 @@ jobs:
       - name: Faire ls
         run: ls -R
 
+      - name: Setup PHP (merci chatgpt)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: phpcs
+
       - name: Faire le phpcs
         run: phpcs
