@@ -11,4 +11,4 @@ jobs:
         run: ls -R
 
       - name: Faire le phpcs
-        run: phpcs.phar
+        run: phpcs
