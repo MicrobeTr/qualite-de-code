@@ -4,5 +4,8 @@ jobs:
   liste:
     runs-on: ubuntu-latest
     steps:
+      - name: Faire le checkout
+        uses: actions/checkout@v4
+        
       - name: Faire ls
         run: ls -R
