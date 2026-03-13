@@ -1,0 +1,45 @@
+name: Verif Arborescence
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verif:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check directory structure
+        run: |
+          echo "Vérification de la structure"
+
+          if [ ! -d "site" ]; then
+            echo "❌ Manque: site"
+            exit 1
+          fi
+
+          if [ ! -d "site/img" ]; then
+            echo "❌ Manque: site/img"
+            exit 1
+          fi
+
+          if [ ! -d "site/css" ]; then
+            echo "❌ Manque: site/css"
+            exit 1
+          fi
+
+          if [ ! -d "site/js" ]; then
+            echo "❌ Manque: site/js"
+            exit 1
+          fi
+
+          if [ ! -d "src" ]; then
+            echo "❌ Manque: src"
+            exit 1
+          fi
+
+          echo "✅ Tout est bon !"
