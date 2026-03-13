@@ -1,0 +1,20 @@
+name: Liste
+on: [push]
+jobs:
+  liste:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Faire le checkout
+        uses: actions/checkout@v4
+
+      - name: Faire ls
+        run: ls -R
+
+      - name: Setup PHP (merci chatgpt)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: phpcs
+
+      - name: Faire le phpcs
+        run: phpcs src/MesDates.php
