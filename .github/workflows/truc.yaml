@@ -17,4 +17,4 @@ jobs:
           tools: phpcs
 
       - name: Faire le phpcs
-        run: phpcs MesDates.php
+        run: phpcs src/MesDates.php
