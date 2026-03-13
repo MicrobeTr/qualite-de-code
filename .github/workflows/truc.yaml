@@ -1,0 +1,8 @@
+name: Liste
+on: [push]
+jobs:
+  liste:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Faire ls
+        run: ls- R
