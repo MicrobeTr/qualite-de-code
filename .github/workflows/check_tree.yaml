@@ -1,0 +1,50 @@
+name: Verif Arborescence
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Vérif (merci chatgpt)
+        run: |
+          set -e
+
+          [ -d "site" ] || { echo "❌ Manque: site"; exit 1; }
+          [ -d "site/img" ] || { echo "❌ Manque: site/img"; exit 1; }
+          [ -d "site/css" ] || { echo "❌ Manque: site/css"; exit 1; }
+          [ -d "site/js" ] || { echo "❌ Manque: site/js"; exit 1; }
+          [ -d "src" ] || { echo "❌ Manque: src"; exit 1; }
+
+          # site : only html or php
+          if find site -maxdepth 1 -type f ! -name "*.html" ! -name "*.php" | grep .; then
+            echo "❌ site contient des fichiers au mauvais format"
+            exit 1
+          fi
+
+          # img : only png or jpg
+          if find site/img -type f ! -name "*.png" ! -name "*.jpg" ! -name "*.jpeg" | grep .; then
+            echo "❌ site/img contient des fichiers au mauvais format"
+            exit 1
+          fi
+
+          # css : only css
+          if find site/css -type f ! -name "*.css" | grep .; then
+            echo "❌ site/css contient des fichiers au mauvais format"
+            exit 1
+          fi
+
+          # js : only js
+          if find site/js -type f ! -name "*.js" | grep .; then
+            echo "❌ site/js contient des fichiers au mauvais format"
+            exit 1
+          fi
+
+          echo "✅ Tout est bon"
