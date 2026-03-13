@@ -6,6 +6,9 @@ jobs:
     steps:
       - name: Faire le checkout
         uses: actions/checkout@v4
-        
+
       - name: Faire ls
         run: ls -R
+
+      - name: Faire le phpcs
+        run: phpcs.phar
